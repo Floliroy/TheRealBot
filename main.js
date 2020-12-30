@@ -29,19 +29,6 @@ bot.on("ready", async function() {
     bot.user.setActivity("conquérir le monde")
     db = await Database.refreshDatas()
 
-    await bot.api.applications(bot.user.id).guilds("342389922491269122").commands.post({
-        data: {name: "miroir", description: "Pour savoir qui est la plus bonne du discord"}
-    })
-    await bot.api.applications(bot.user.id).guilds("342389922491269122").commands.post({
-        data: {name: "penis", description: "Pour connaître la taille de ton pénis"}
-    })
-    await bot.api.applications(bot.user.id).guilds("342389922491269122").commands.post({
-        data: {name: "gay", description: "Pour savoir à combien de pourcent tu es gay"}
-    })
-    await bot.api.applications(bot.user.id).guilds("342389922491269122").commands.post({
-        data: {name: "waifu", description: "Pour savoir à combien de pourcent tu es une waifu"}
-    })
-
     console.log(`LOG: Logged in as ${bot.user.tag}`)
 })
 
