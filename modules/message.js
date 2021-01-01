@@ -25,13 +25,37 @@ Map.prototype.checkContain = function(test){
 }
 
 Date.prototype.formatTime = function(){
-    function addDigit(number){
-        return number > 9 ? number : `0${number}`
+    function getClosest(min){
+        const minutes = new Array(0, 15, 30, 45, 60)
+        let closest = 0
+        let lastCalc = 60
+        for(let elem of minutes){
+            if(Math.abs(elem - min) < lastCalc){
+                lastCalc = Math.abs(elem - min)
+                closest = elem
+            }
+        }
+        return closest
     }
+
     let ret = ""
-    if(this.getHours() > 0) ret+= `${addDigit(this.getHours())}h`
-    if(this.getMinutes() > 0) ret+= `${addDigit(this.getMinutes())}m`
-    if(this.getSeconds() > 0) ret+= `${addDigit(this.getSeconds())}s`
+    if(this.getHours() > 0){
+        if(getClosest(this.getMinutes()) > 0){
+            if(getClosest(this.getMinutes()) == 60){
+                ret+= `${this.getHours() + 1}h`
+            }else{
+                ret+= `${this.getHours()}h et ${getClosest(this.getMinutes())}min`
+            }
+        }else{
+            ret+= `${this.getHours()}h`
+        }
+    }else{
+        if(this.getMinutes() > 0){
+            ret+= `${getClosest(this.getMinutes()) > 0 ? getClosest(this.getMinutes()) : 3}min`
+        }else{
+            ret+= `${getClosest(this.getSeconds()) > 0 ? getClosest(this.getSeconds()) : 3}sec`
+        }
+    }
 
     return ret
 }
