@@ -58,19 +58,19 @@ module.exports = class Database{
             switch(rand){
                 case 0:
                     tag = `<@${usersId.shannel}>`
-                    break;
+                    break
                 case 1:
                     tag = `<@${usersId.oceane}>`
-                    break;
+                    break
                 case 2:
                     tag = `<@${usersId.aurore}>`
-                    break;
+                    break
                 case 3:
                     tag = `<@${usersId.blue}>`
-                    break;
+                    break
                 case 4:
                     tag = `<@${usersId.mena}>`
-                    break;
+                    break
             }
             message.channel.send(new Discord.MessageEmbed()
                 .setColor(0x7FFF00)
