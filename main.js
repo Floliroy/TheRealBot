@@ -18,9 +18,10 @@ setInterval(async function(){
 }, 1000 * 60 * 60)
 
 /**
- * My own message library
+ * My owns libraries
  */
 const Message = require("./modules/message.js")
+const LogMessage = require("./modules/logMessage.js")
 
 /**
  * Function to run when ready
@@ -44,4 +45,18 @@ bot.on('message', async function(message) {
     }else{
         Message.handle(message, db)
     }
+})
+
+/**
+ * Function to run when bot see a message getting deleted
+ */
+bot.on('messageDelete', function(message){
+    LogMessage.handleDelete(bot, message)  
+})
+
+/**
+ * Function to run when bot see a message getting updated
+ */
+bot.on('messageUpdate', function(oldMessage, newMessage){
+    LogMessage.handleUpdate(bot, oldMessage, newMessage)  
 })

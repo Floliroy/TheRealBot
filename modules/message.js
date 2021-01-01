@@ -52,7 +52,7 @@ function isAuth(test){
 }
 
 
-module.exports = class Database{
+module.exports = class Message{
 
     static async handle(message, db){
         const content = message.content.toLowerCase()
