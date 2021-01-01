@@ -27,7 +27,7 @@ module.exports = class LogMessage{
         }
     
         if((message.content && message.content != "") || message.attachments.array().length > 0){
-            const channel = bot.channels.get(channelsId.delete)
+            const channel = bot.channels.cache.get(channelsId.delete)
             channel.send(embed)
         }
     }
@@ -44,7 +44,7 @@ module.exports = class LogMessage{
         }
         embed.addField("After", newMessage.content)
     
-        const channel = bot.channels.get(channelsId.delete)
+        const channel = bot.channels.cache.get(channelsId.delete)
         channel.send(embed)
     }
 }
