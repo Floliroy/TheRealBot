@@ -24,6 +24,18 @@ Map.prototype.checkContain = function(test){
     return false
 }
 
+Date.prototype.formatTime = function(){
+    function addDigit(number){
+        return number > 9 ? number : `0${number}`
+    }
+    let ret = ""
+    if(this.getHours() > 0) ret+= `${addDigit(this.getHours())}h`
+    if(this.getMinutes() > 0) ret+= `${addDigit(this.getMinutes())}m`
+    if(this.getSeconds() > 0) ret+= `${addDigit(this.getSeconds())}s`
+
+    return ret
+}
+
 const usersId = {
     flo: "112632359207108608",
     pata: "230698146630598656",
@@ -32,7 +44,8 @@ const usersId = {
     oceane: "348302437117067286",
     aurore: "325710398986911767",
     blue: "211536053314519040",
-    mena: "272101663945261057"
+    mena: "272101663945261057",
+    diego: "272360638741741570"
 }
 function isAuth(test){
     return test == usersId.flo || test == usersId.pata || test == usersId.dtql
@@ -109,6 +122,20 @@ module.exports = class Database{
             .setColor(0x00CED1)
             .setTitle("Waifu Power ❤️")
             .setDescription(`${textToSend}${percentage}%`))
+        }else if(content.startsWith("/precoce")){
+            let textToSend = `<@${message.author.id}>, tu peux tenir `
+            let time = message.author.id == usersId.diego ? 21600 : Math.floor(Math.random() * 7200 + 1)
+            if(content.includes(" ") && message.mentions.users.firstKey(undefined)!= null){
+                textToSend = `<@${message.mentions.users.firstKey(undefined)}> peut tenir `
+                time = message.mentions.users.firstKey(undefined) == usersId.diego ? 21600 : Math.floor(Math.random() * 7200 + 1) 
+            }
+            let formatTime = new Date(0)
+            formatTime.setSeconds(time)
+
+            message.channel.send(new Discord.MessageEmbed()
+            .setColor(0xFFB6C1)
+            .setTitle("Précoce Device 💦")
+            .setDescription(`${textToSend}${formatTime.formatTime()}`))
         }else if(content.startsWith("/penis")){
             let textToSend = `Voici la taille de ton pénis, <@${message.author.id}> :\n`
             if(content.includes(" ") && message.mentions.users.firstKey(undefined)!= null){
