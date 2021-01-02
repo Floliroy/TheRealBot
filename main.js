@@ -22,6 +22,7 @@ setInterval(async function(){
  */
 const Message = require("./modules/message.js")
 const LogMessage = require("./modules/logMessage.js")
+const InteractionMessage = require("./modules/interactionMessage.js")
 
 /**
  * Function to run when ready
@@ -29,6 +30,8 @@ const LogMessage = require("./modules/logMessage.js")
 bot.on("ready", async function() {
     bot.user.setActivity("conquérir le monde")
     db = await Database.refreshDatas()
+
+    InteractionMessage.start(bot)
 
     console.log(`LOG: Logged in as ${bot.user.tag}`)
 })
