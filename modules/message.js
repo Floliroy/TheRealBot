@@ -76,7 +76,7 @@ module.exports = class Message{
             }
         }else if(checkContain){
             message.channel.send(checkContain[Math.floor(Math.random() * checkContain.length)])
-        }else if(!content.includes(" ") && message.mentions.users.first(undefined) == message.mentions.users.last(undefined)){
+        }else if(!content.includes(" ") && message.mentions.users.first(undefined) == message.mentions.users.last(undefined) && content.includes("@")){
             const reply = db.replyUser.get(message.mentions.users.firstKey(undefined))
             if(reply){
                 message.channel.send(reply)
